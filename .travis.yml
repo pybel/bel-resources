@@ -23,6 +23,10 @@ jobs:
     - stage: docs
       env: TOXENV=doc8
     - env: TOXENV=readme
+matrix:
+  allow_failures:
+    - env: TOXENV=mypy
+    - env: TOXENV=xenon
 install:
   - sh -c 'if [ "$TOXENV" = "py" ]; then pip install tox codecov coverage; else pip install tox; fi'
 script:
