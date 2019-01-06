@@ -2,13 +2,27 @@
 
 """Tests for utilities for BEL resources."""
 
+import time
 import unittest
 
 from bel_resources import EmptyResourceError, get_bel_resource, split_file_to_annotations_and_definitions
 from bel_resources.read_document import sanitize_file_lines
+from bel_resources.utils import get_iso_8601_date
 from tests.constants import TEST_ANNOTATION_PATH, TEST_NAMESPACE_EMPTY_PATH
 from tests.examples import simple
 from tests.mocks import mock_bel_resources
+
+
+class TestUtils(unittest.TestCase):
+    """Test utilities."""
+
+    def test_get_date(self):
+        """Test getting the date."""
+        d = get_iso_8601_date()
+        self.assertIsInstance(d, str)
+        self.assertEqual(d[:4], time.strftime('%Y'))
+        self.assertEqual(d[4:6], time.strftime('%m'))
+        self.assertEqual(d[6:8], time.strftime('%d'))
 
 
 class TestBELResources(unittest.TestCase):
