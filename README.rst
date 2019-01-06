@@ -1,5 +1,5 @@
-BEL Resources |build| |coverage|
-================================
+BEL Resources |build| |coverage| |zenodo|
+=========================================
 Utilities for BEL resource files.
 
 Installation |pypi_version| |python_versions| |pypi_license|
@@ -32,3 +32,6 @@ or get the latest code from `GitHub <https://github.com/cthoyt/bel-resources>`_ 
 
 .. |pypi_license| image:: https://img.shields.io/pypi/l/bel-resources.svg
     :alt: MIT License
+
+.. |zenodo| image:: https://zenodo.org/badge/164254633.svg
+   :target: https://zenodo.org/badge/latestdoi/164254633
