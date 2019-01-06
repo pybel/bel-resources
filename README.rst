@@ -31,4 +31,4 @@ or get the latest code from `GitHub <https://github.com/cthoyt/bel-resources>`_ 
     :alt: Current version on PyPI
 
 .. |pypi_license| image:: https://img.shields.io/pypi/l/bel-resources.svg
-    :alt: Apache 2.0 License
+    :alt: MIT License
