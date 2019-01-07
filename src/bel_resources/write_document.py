@@ -69,7 +69,7 @@ def make_knowledge_header(name: str,
 
     yield '#' * 80
     yield '#| Statements'
-    yield '#' * 80 + '\n'
+    yield '#' * 80
 
 
 def make_document_metadata(name: str,
@@ -92,8 +92,6 @@ def make_document_metadata(name: str,
     :param licenses: The license applied to this document
     :param disclaimer: The disclaimer for this document
     """
-    yield '# This document was created by PyBEL v{} on {}\n'.format(VERSION, time.asctime())
-
     yield '#' * 80
     yield '#| Metadata'
     yield '#' * 80 + '\n'
@@ -132,15 +130,17 @@ def make_document_namespaces(namespace_url: Optional[Mapping[str, str]] = None,
     """
     yield '#' * 80
     yield '#| Namespaces'
-    yield '#' * 80 + '\n'
+    yield '#' * 80
 
     if namespace_url:
-        yield '# Enumerated Namespaces\n'
+        yield '\n# Enumerated Namespaces'
+        yield '# ---------------------'
         for name, url in sorted(namespace_url.items()):
             yield NAMESPACE_URL_FMT.format(name, url)
 
     if namespace_patterns:
-        yield '\n# Regular Expression Namespaces\n'
+        yield '\n# Regular Expression Namespaces'
+        yield '# -----------------------------'
         for name, pattern in sorted(namespace_patterns.items()):
             yield NAMESPACE_PATTERN_FMT.format(name, pattern)
 
@@ -160,20 +160,23 @@ def make_document_annotations(annotation_url: Optional[Mapping[str, str]] = None
     if annotation_url or annotation_patterns or annotation_list:
         yield '#' * 80
         yield '#| Annotations'
-        yield '#' * 80 + '\n'
+        yield '#' * 80
 
     if annotation_url:
-        yield '# Enumerated Annotations\n'
+        yield '\n# Enumerated Annotations'
+        yield '# ----------------------'
         for name, url in sorted(annotation_url.items()):
             yield ANNOTATION_URL_FMT.format(name, url)
 
     if annotation_patterns:
-        yield '# Regular Expression Annotations\n'
+        yield '\n# Regular Expression Annotations'
+        yield '# ------------------------------'
         for name, pattern in sorted(annotation_patterns.items()):
             yield ANNOTATION_PATTERN_FMT.format(name, pattern)
 
     if annotation_list:
-        yield '# Locally Defined Annotations\n'
+        yield '\n# Locally Defined Annotations'
+        yield '# ---------------------------'
         for annotation, values in sorted(annotation_list.items()):
             yield format_annotation_list(annotation, values)
 
