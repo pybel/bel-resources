@@ -8,7 +8,6 @@ from typing import Iterable, Mapping, Optional, Set
 from .constants import (
     ANNOTATION_PATTERN_FMT, ANNOTATION_URL_FMT, NAMESPACE_PATTERN_FMT, NAMESPACE_URL_FMT, format_annotation_list,
 )
-from .constants import VERSION
 
 __all__ = [
     'make_knowledge_header',
