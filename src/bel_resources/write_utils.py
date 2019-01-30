@@ -3,7 +3,7 @@
 """Shared utilities for writing BEL namespace and annotation files."""
 
 import getpass
-from typing import Iterable, Mapping, Optional
+from typing import Iterable, Mapping, Optional, Tuple, Union
 
 DATETIME_FMT = '%Y-%m-%dT%H:%M:%S'
 
@@ -72,7 +72,7 @@ def iter_properties_header(case_sensitive: bool = True,
     yield 'CacheableFlag={}'.format('yes' if cacheable else 'no')
 
 
-def iter_body(values: Mapping[str, str],
+def iter_body(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
               delimiter: str = '|',
               ) -> Iterable[str]:
     """Iterate over the lines of the ``[Values]`` section of a BEL resource file.
@@ -80,12 +80,14 @@ def iter_body(values: Mapping[str, str],
     :param values: A dictionary of labels to their encodings
     :param delimiter: The delimiter between names and labels in this config file
     """
-    if not isinstance(values, Mapping):
-        raise TypeError('values must be a Mapping ')
+    if isinstance(values, Mapping):
+        values = values.items()
+    elif not isinstance(values, Iterable):
+        raise TypeError('values are not iterable: {}'.format(values))
 
     yield '[Values]'
 
-    for key, value in sorted(values.items()):
+    for key, value in sorted(values):
         if not key:
             continue
 

@@ -4,7 +4,7 @@
 
 import time
 from itertools import chain
-from typing import Iterable, Mapping, Optional, TextIO
+from typing import Iterable, Mapping, Optional, TextIO, Tuple, Union
 
 from .constants import NAMESPACE_DOMAIN_OTHER, NAMESPACE_DOMAIN_TYPES
 from .utils import get_iso_8601_date
@@ -15,7 +15,7 @@ __all__ = [
 ]
 
 
-def write_namespace(values: Mapping[str, str],
+def write_namespace(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
                     namespace_name: str,
                     namespace_keyword: str,
                     namespace_domain: Optional[str] = None,
@@ -39,7 +39,7 @@ def write_namespace(values: Mapping[str, str],
                     ) -> None:
     """Write a BEL namespace (BELNS) to a file.
 
-    :param values: A dictionary of values to their encodings
+    :param values: A dictionary of values to their encodings or iterable of pairs of values and their encodings
     :param namespace_name: The namespace nam
     :param namespace_keyword: Preferred BEL Keyword, maximum length of 8 (corresponds to MIRIAM namespace)
     :param namespace_domain: One of: :data:`pybel.constants.NAMESPACE_DOMAIN_BIOPROCESS`,

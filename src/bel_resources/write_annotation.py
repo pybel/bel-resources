@@ -4,7 +4,7 @@
 
 import time
 from itertools import chain
-from typing import Iterable, Mapping, Optional, TextIO
+from typing import Iterable, Mapping, Optional, TextIO, Tuple, Union
 
 from .utils import get_iso_8601_date
 from .write_utils import DATETIME_FMT, iter_author_header, iter_body, iter_citation_header, iter_properties_header
@@ -15,7 +15,7 @@ __all__ = [
 
 
 def write_annotation(keyword: str,
-                     values: Mapping[str, str],
+                     values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
                      citation_name: str,
                      description: str,
                      usage: Optional[str] = None,
@@ -32,7 +32,7 @@ def write_annotation(keyword: str,
     """Write a BEL annotation (BELANNO) to a file.
 
     :param keyword: The annotation keyword
-    :param values: A dictionary of {name: label}
+    :param values: A dictionary of {name: label} or iterable of pairs of name, label
     :param citation_name: The citation name
     :param description: A description of this annotation
     :param usage: How to use this annotation
