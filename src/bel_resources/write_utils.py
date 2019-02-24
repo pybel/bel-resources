@@ -96,4 +96,4 @@ def iter_body(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
         if not key:
             continue
 
-        yield '{}{}{}'.format(key, delimiter, value)
+        yield '{}{}{}'.format(key, delimiter, ''.join(sorted(value)))
