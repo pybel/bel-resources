@@ -25,6 +25,8 @@ def iter_author_header(name: Optional[str] = None,
     if contact is not None:
         yield 'ContactInfoString={}'.format(contact)
 
+    yield ''
+
 
 def iter_citation_header(name: str,
                          description: Optional[str] = None,
@@ -55,6 +57,8 @@ def iter_citation_header(name: str,
     if url is not None:
         yield 'ReferenceURL={}'.format(url)
 
+    yield ''
+
 
 def iter_properties_header(case_sensitive: bool = True,
                            delimiter: str = '|',
@@ -70,6 +74,7 @@ def iter_properties_header(case_sensitive: bool = True,
     yield 'CaseSensitiveFlag={}'.format('yes' if case_sensitive else 'no')
     yield 'DelimiterString={}'.format(delimiter)
     yield 'CacheableFlag={}'.format('yes' if cacheable else 'no')
+    yield ''
 
 
 def iter_body(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
@@ -97,3 +102,5 @@ def iter_body(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
             continue
 
         yield '{}{}{}'.format(key, delimiter, ''.join(sorted(value)))
+
+    yield ''

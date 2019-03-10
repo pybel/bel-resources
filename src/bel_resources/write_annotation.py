@@ -105,3 +105,5 @@ def iter_annotation_nominal(keyword: str,
 
     if usage is not None:
         yield 'UsageString={}'.format(usage.strip().replace('\n', ''))
+
+    yield ''

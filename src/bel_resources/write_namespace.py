@@ -140,3 +140,5 @@ def iter_namespace_nominal(name: str,
 
     if query_url is not None:
         yield 'QueryValueURL={}'.format(query_url)
+
+    yield ''
