@@ -46,10 +46,10 @@ def write_annotation(keyword: str,
     :param cacheable: Should this config file be cached?
     :param file: A writable file or file-like
     """
-    values = {
-        key.strip(): value.strip().replace('\n', '')
-        for key, value in values.items()
-    }
+    if isinstance(values, Mapping):
+        values = values.items()
+    elif not isinstance(values, Iterable):
+        raise TypeError('values are not iterable: {}'.format(values))
 
     nominal_lines = iter_annotation_nominal(
         keyword,

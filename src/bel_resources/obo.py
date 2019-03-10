@@ -6,8 +6,9 @@ from typing import Callable, Optional, TextIO, Union
 
 import networkx as nx
 import obonet
+from tqdm import tqdm
 
-from bel_resources import write_namespace
+from bel_resources import write_annotation, write_namespace
 
 __all__ = [
     'convert_obo_to_belns',
@@ -50,19 +51,19 @@ def convert_obo_graph_to_belns(graph: nx.MultiDiGraph,
         values = {
             data['name']: encoding(graph, node)
             for node, data in graph.nodes(data=True)
-            if node.startswith(ontology.upper() + ':')
+            if node.upper().startswith(ontology.upper() + ':')
         }
     elif process_identifiers is not None:
         values = {
             process_identifiers(node): encoding(graph, node)
             for node in graph
-            if node.startswith(ontology.upper() + ':')
+            if node.upper().startswith(ontology.upper() + ':')
         }
     else:
         values = {
             node: encoding(graph, node)
             for node in graph
-            if node.startswith(ontology.upper() + ':')
+            if node.upper().startswith(ontology.upper() + ':')
         }
 
     write_namespace(
@@ -82,24 +83,25 @@ def convert_obo_to_belanno(url: str, path: str):
         convert_obo_graph_to_belanno(graph, file=file)
 
 
-def convert_obo_graph_to_belanno(graph: nx.MultiDiGraph, file: Optional[TextIO] = None, ) -> None:
+def convert_obo_graph_to_belanno(graph: nx.MultiDiGraph,
+                                 file: Optional[TextIO] = None,
+                                 ) -> None:
     """Convert an OBO graph to a BEL annotation."""
-    name = graph.graph['name']
+    keyword = graph.graph['name']
     ontology = graph.graph['ontology']
 
-    values = {
-        node[1 + len(ontology):]: 'P'
-        for node in graph
-        if node.startswith(ontology.upper() + ':')
-    }
+    values = (
+        (data['name'], data.get('description', ''))
+        for node, data in tqdm(graph.nodes(data=True))
+        if node.upper().startswith(ontology.upper() + ':')
+    )
 
-    write_namespace(
+    write_annotation(
         values=values,
-        namespace_name=name,
-        namespace_keyword=ontology,
-        namespace_domain=None,
-        namespace_version=graph.graph['data-version'],
         file=file,
+        citation_name=keyword,
+        description=keyword,
+        keyword=keyword,
     )
 
 
