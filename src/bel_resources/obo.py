@@ -20,23 +20,25 @@ __all__ = [
 EncodingFunction = Callable[[nx.MultiDiGraph, str], str]
 
 
-def convert_obo_to_belns(url: str,
-                         path: str,
-                         use_names: bool = False,
-                         encoding: Union[str, EncodingFunction] = None,
-                         ) -> None:
+def convert_obo_to_belns(
+        url: str,
+        path: str,
+        use_names: bool = False,
+        encoding: Union[str, EncodingFunction] = None,
+) -> None:
     """Convert an OBO file to a BEL namespace."""
     graph = obonet.read_obo(url)
     with open(path, 'w') as file:
         convert_obo_graph_to_belns(graph, file=file, use_names=use_names, encoding=encoding)
 
 
-def convert_obo_graph_to_belns(graph: nx.MultiDiGraph,
-                               file: Optional[TextIO] = None,
-                               use_names: bool = False,
-                               encoding: Union[None, str, EncodingFunction] = None,
-                               process_identifiers: Optional[Callable[[str], str]] = None,
-                               ) -> None:
+def convert_obo_graph_to_belns(
+        graph: nx.MultiDiGraph,
+        file: Optional[TextIO] = None,
+        use_names: bool = False,
+        encoding: Union[None, str, EncodingFunction] = None,
+        process_identifiers: Optional[Callable[[str], str]] = None,
+) -> None:
     name = graph.graph['name']
     ontology = graph.graph['ontology']
 
