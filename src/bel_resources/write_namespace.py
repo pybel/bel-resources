@@ -15,28 +15,29 @@ __all__ = [
 ]
 
 
-def write_namespace(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
-                    namespace_name: str,
-                    namespace_keyword: str,
-                    namespace_domain: Optional[str] = None,
-                    author_name: Optional[str] = None,
-                    citation_name: Optional[str] = None,
-                    namespace_description: Optional[str] = None,
-                    namespace_species: Optional[str] = None,
-                    namespace_version: Optional[str] = None,
-                    namespace_query_url: Optional[str] = None,
-                    namespace_created: Optional[str] = None,
-                    author_contact: Optional[str] = None,
-                    author_copyright: Optional[str] = None,
-                    citation_description: Optional[str] = None,
-                    citation_url: Optional[str] = None,
-                    citation_version: Optional[str] = None,
-                    citation_date: Optional[str] = None,
-                    case_sensitive: bool = True,
-                    delimiter: str = '|',
-                    cacheable: bool = True,
-                    file: Optional[TextIO] = None,
-                    ) -> None:
+def write_namespace(
+        values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
+        namespace_name: str,
+        namespace_keyword: str,
+        namespace_domain: Optional[str] = None,
+        author_name: Optional[str] = None,
+        citation_name: Optional[str] = None,
+        namespace_description: Optional[str] = None,
+        namespace_species: Optional[str] = None,
+        namespace_version: Optional[str] = None,
+        namespace_query_url: Optional[str] = None,
+        namespace_created: Optional[str] = None,
+        author_contact: Optional[str] = None,
+        author_copyright: Optional[str] = None,
+        citation_description: Optional[str] = None,
+        citation_url: Optional[str] = None,
+        citation_version: Optional[str] = None,
+        citation_date: Optional[str] = None,
+        case_sensitive: bool = True,
+        delimiter: str = '|',
+        cacheable: bool = True,
+        file: Optional[TextIO] = None,
+) -> None:
     """Write a BEL namespace (BELNS) to a file.
 
     :param values: A dictionary of values to their encodings or iterable of pairs of values and their encodings
@@ -98,15 +99,16 @@ def write_namespace(values: Union[Iterable[Tuple[str, str]], Mapping[str, str]],
         print(line, file=file)
 
 
-def iter_namespace_nominal(name: str,
-                           keyword: str,
-                           namespace_domain: Optional[str] = None,
-                           query_url: Optional[str] = None,
-                           description: Optional[str] = None,
-                           species: Optional[str] = None,
-                           version: Optional[str] = None,
-                           created: Optional[str] = None,
-                           ) -> Iterable[str]:
+def iter_namespace_nominal(
+        name: str,
+        keyword: str,
+        namespace_domain: Optional[str] = None,
+        query_url: Optional[str] = None,
+        description: Optional[str] = None,
+        species: Optional[str] = None,
+        version: Optional[str] = None,
+        created: Optional[str] = None,
+) -> Iterable[str]:
     """Iterate over the lines of the ``[Namespace]`` section of a BELNS file.
 
     :param name: The namespace name
