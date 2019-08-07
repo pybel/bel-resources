@@ -66,6 +66,10 @@ def convert_obo_graph_to_belns(graph: nx.MultiDiGraph,
             if node.upper().startswith(ontology.upper() + ':')
         }
 
+    if not values:
+        c = sum(node.upper().startswith(ontology.upper() + ':') for node in graph)
+        raise ValueError('No values for {} found. Shuld be: {}'.format(ontology, c))
+
     write_namespace(
         values=values,
         namespace_name=name,
