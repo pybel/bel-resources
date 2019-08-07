@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Generate summary pages of BEL graphs in HTML."""
+"""Tools for BEL namespaces on GitHub."""
 
 import sys
 
@@ -27,12 +27,12 @@ def get_github_url(owner: str, repo: str, path: str) -> str:
 
 def get_conso_names_url() -> str:
     """Get the URL for the most recent version of Curation of Neurodegeneration Supporting Ontology (CONSO) names."""
-    return get_github_url('pharmacome', 'terminology', 'export/hbp-names.belns')
+    return get_github_url('pharmacome', 'conso', 'export/conso-names.belns')
 
 
 def get_conso_identifiers_url() -> str:
     """Get the URL for the most recent version of CONSO identifiers."""
-    return get_github_url('pharmacome', 'terminology', 'export/hbp.belns')
+    return get_github_url('pharmacome', 'conso', 'export/conso.belns')
 
 
 def get_famplex_url() -> str:
