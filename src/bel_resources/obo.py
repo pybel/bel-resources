@@ -40,6 +40,9 @@ def convert_obo_graph_to_belns(
         process_identifiers: Optional[Callable[[str], str]] = None,
 ) -> None:
     name = graph.graph['name']
+    if name.endswith('.obo'):
+        name = name[:-len('.obo')]
+
     ontology = graph.graph['ontology']
 
     if encoding is None:
