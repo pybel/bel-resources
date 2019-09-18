@@ -8,7 +8,8 @@ import networkx as nx
 import obonet
 from tqdm import tqdm
 
-from bel_resources import write_annotation, write_namespace
+from .write_annotation import write_annotation
+from .write_namespace import write_namespace
 
 __all__ = [
     'convert_obo_to_belns',
@@ -21,10 +22,10 @@ EncodingFunction = Callable[[nx.MultiDiGraph, str], str]
 
 
 def convert_obo_to_belns(
-        url: str,
-        path: str,
-        use_names: bool = False,
-        encoding: Union[str, EncodingFunction] = None,
+    url: str,
+    path: str,
+    use_names: bool = False,
+    encoding: Union[str, EncodingFunction] = None,
 ) -> None:
     """Convert an OBO file to a BEL namespace."""
     graph = obonet.read_obo(url)
@@ -33,12 +34,13 @@ def convert_obo_to_belns(
 
 
 def convert_obo_graph_to_belns(
-        graph: nx.MultiDiGraph,
-        file: Optional[TextIO] = None,
-        use_names: bool = False,
-        encoding: Union[None, str, EncodingFunction] = None,
-        process_identifiers: Optional[Callable[[str], str]] = None,
+    graph: nx.MultiDiGraph,
+    file: Optional[TextIO] = None,
+    use_names: bool = False,
+    encoding: Union[None, str, EncodingFunction] = None,
+    process_identifiers: Optional[Callable[[str], str]] = None,
 ) -> None:
+    """Convert a graph from :mod:`obonet` to a BELNS file."""
     name = graph.graph['name']
     if name.endswith('.obo'):
         name = name[:-len('.obo')]
@@ -50,7 +52,10 @@ def convert_obo_graph_to_belns(
 
     if isinstance(encoding, str):
         x = encoding
-        encoding = lambda _, __: x
+
+        def encoding(_, __) -> str:
+            """Encode a BEL node."""
+            return x
 
     if use_names:
         values = {
@@ -92,9 +97,10 @@ def convert_obo_to_belanno(url: str, path: str):
         convert_obo_graph_to_belanno(graph, file=file)
 
 
-def convert_obo_graph_to_belanno(graph: nx.MultiDiGraph,
-                                 file: Optional[TextIO] = None,
-                                 ) -> None:
+def convert_obo_graph_to_belanno(
+    graph: nx.MultiDiGraph,
+    file: Optional[TextIO] = None,
+) -> None:
     """Convert an OBO graph to a BEL annotation."""
     keyword = graph.graph['name']
     ontology = graph.graph['ontology']

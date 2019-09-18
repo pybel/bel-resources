@@ -47,7 +47,7 @@ class TestBELResources(unittest.TestCase):
             'TestAnnot2': 'O',
             'TestAnnot3': 'O',
             'TestAnnot4': 'O',
-            'TestAnnot5': 'O'
+            'TestAnnot5': 'O',
         }
 
         self.assertEqual(expected_values, res['Values'])
