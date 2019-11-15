@@ -17,6 +17,7 @@ import sys
 from getpass import getuser
 
 import click
+
 from bel_resources import parse_bel_resource, write_annotation, write_namespace
 from bel_resources.constants import NAMESPACE_DOMAIN_OTHER
 

@@ -19,7 +19,9 @@ ignore =
 max-line-length = 120
 
 # flake8-import-order
-application-import-names = multigroupby
+application-import-names =
+    bel_resources
+    tests
 import-order-style = pycharm
 
 # mccabe
