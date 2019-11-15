@@ -10,19 +10,19 @@ Install from `PyPI <https://pypi.python.org/pypi/bel-resources>`_ with:
 
    $ pip install bel-resources
 
-or get the latest code from `GitHub <https://github.com/cthoyt/bel-resources>`_ with:
+or get the latest code from `GitHub <https://github.com/pybel/bel-resources>`_ with:
 
 .. code-block:: bash
 
-   $ git clone https://github.com/cthoyt/bel-resources.git
+   $ git clone https://github.com/pybel/bel-resources.git
    $ cd bel-resources
    $ pip install -e .
 
-.. |build| image:: https://travis-ci.com/cthoyt/bel-resources.svg?branch=master
-    :target: https://travis-ci.com/cthoyt/bel-resources
+.. |build| image:: https://travis-ci.com/pybel/bel-resources.svg?branch=master
+    :target: https://travis-ci.com/pybel/bel-resources
 
-.. |coverage| image:: https://codecov.io/gh/cthoyt/bel-resources/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/cthoyt/bel-resources
+.. |coverage| image:: https://codecov.io/gh/pybel/bel-resources/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/pybel/bel-resources
 
 .. |python_versions| image:: https://img.shields.io/pypi/pyversions/bel-resources.svg
     :alt: Stable Supported Python Versions
