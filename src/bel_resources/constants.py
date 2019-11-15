@@ -5,7 +5,7 @@
 import re
 from typing import Iterable
 
-VERSION = '0.0.3'
+VERSION = '0.0.4-dev'
 
 METADATA_LINE_RE = re.compile(r"(SET\s+DOCUMENT|DEFINE\s+NAMESPACE|DEFINE\s+ANNOTATION)")
 
